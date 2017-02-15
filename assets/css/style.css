@@ -1,0 +1,47 @@
+html { 
+  background: url(../images/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* {
+	background-image: url("../images/background.jpg");
+	position: relative;
+	min-width: 1028px;
+	min-height: 100%;
+	
+}*/
+
+.container {
+	margin: 100px;
+	background-color: maroon;
+	border-color: red;
+	border: 5px;
+	width: 80%;
+}
+
+h1, .arsenal {
+	text-align: center;
+}
+
+h1 {
+	background-color: maroon;
+	color: white;
+}
+
+button {
+	background-color: crimson;
+	border: round;
+	border-color: white;
+	margin: 0 auto;
+}
+
+p {
+	color: white;
+}
+
+label {
+	color: white;
+}

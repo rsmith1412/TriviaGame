@@ -1,52 +1,73 @@
 //When start button clicked, show questions, start and display timer
 $('#start').click(function() {
-  $('#quiz').toggle('slow', function() {
-    // Animation complete.
-  });
+	$('#quiz').toggle('slow', function() {
+    	// Animation complete.
+	});
+
   //Start and display timer of 30 seconds
+  
+  window.onload = function () {
+  	var display = document.querySelector('#time'),
+  	timer = new CountDownTimer(30),
+  	timeObj = CountDownTimer.parse(30);
 
-  function startTimer(duration, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-    function timer() {
-        // get the number of seconds that have elapsed since 
-        // startTimer() was called
-        diff = duration - (((Date.now() - start) / 1000) | 0);
+  	format(timeObj.minutes, timeObj.seconds);
 
-        // does the same job as parseInt truncates the float
-        minutes = (diff / 60) | 0;
-        seconds = (diff % 60) | 0;
+  	timer.onTick(format);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+  	document.querySelector('button').addEventListener('click', function () {
+  		timer.start();
+  	});
 
-        display.textContent = minutes + ":" + seconds; 
+  	function format(minutes, seconds) {
+  		minutes = minutes < 10 ? "0" + minutes : minutes;
+  		seconds = seconds < 10 ? "0" + seconds : seconds;
+  		display.textContent = minutes + ':' + seconds;
+  	}
+  };
+  
+});
 
-        if (diff <= 0) {
-            // add one second so that the count down starts at the full duration
-            // example 05:00 not 04:59
-            start = Date.now() + 1000;
-        }
-    };
-    // we don't want to wait a full second before the timer starts
-    timer();
-    setInterval(timer, 1000);
-}
+  var correctAnswers = 0;
+  var incorrect = 0;
+  var cat1 = ($("input[@name=q1]:checked").val() != "a");
+  var cat2 = ($("input[@name=q2]:checked").val() != "c");
+  var cat3 = ($("input[@name=q3]:checked").val() != "d");
+  var cat4 = ($("input[@name=q4]:checked").val() != "b");
+  var cat5 = ($("input[@name=q5]:checked").val() != "d");
 
-window.onload = function () {
-    var oneMinute = 60,
-        display = document.querySelector('.arsenal');
-    startTimer(oneMinute, display);
-    document.getElementById("arsenal").innerHTML = "Time remaining";
-};
+  if (cat1 === true)
+  	correctAnswers++;
+
+  else incorrect++;
+
+  if (cat2 === true)
+  	correctAnswers++;
+
+  else incorrect++;
+
+  if (cat3 === true)
+  	correctAnswers++;
+
+  else incorrect++;
+
+  if (cat4 === true)
+  	correctAnswers++;
+
+  else incorrect++;
+
+  if (cat5 === true)
+  	correctAnswers++;
+
+  else incorrect++;
 
 //Display results when clicked
 $('#submit').click(function() {
-  $('#results').toggle('slow', function() {
-    // Animation complete.
-  	});
-});
+	$('#results').toggle('slow', function() {
+	    // Animation complete.
 
-});
+	    console.log(correctAnswers);
+	    console.log(incorrect);
+
+	})
+})

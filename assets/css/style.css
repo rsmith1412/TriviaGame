@@ -7,26 +7,31 @@ html {
 }
 
 /* {
-	background-image: url("../images/background.jpg");
-	position: relative;
 	min-width: 1028px;
 	min-height: 100%;
 	
 }*/
+#quiz {
+	display: none;
+}
+
+#results {
+	display: none;
+}
 
 .container {
-	margin: 100px;
+	margin-top: 100px;
 	background-color: maroon;
 	border-color: red;
 	border: 5px;
-	width: 80%;
+	width: 60%;
 }
 
-h1, .arsenal {
+h1, h2 {
 	text-align: center;
 }
 
-h1 {
+h1, h2 {
 	background-color: maroon;
 	color: white;
 }
@@ -36,6 +41,7 @@ button {
 	border: round;
 	border-color: white;
 	margin: 0 auto;
+	margin-bottom: 20px;
 }
 
 p {

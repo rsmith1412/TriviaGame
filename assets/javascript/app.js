@@ -15,7 +15,7 @@ $('#start').click(function() {
 
   	timer.onTick(format);
 
-  	document.querySelector('button').addEventListener('click', function () {
+  	document.querySelector('start').addEventListener('click', function () {
   		timer.start();
   	});
 
@@ -27,9 +27,29 @@ $('#start').click(function() {
   };
   
 });
-
+	
   var correctAnswers = 0;
-  var incorrect = 0;
+  var incorrect = 5 - correctAnswers;
+  var answers = ["a", "c", "d", "b", "a"]
+  	total = answers.length;
+  var ans1 = "a";
+  var ans2 = "c";
+  var ans3 = "d";
+  var ans4 = "b";
+  var ans5 = "a";
+
+  	function getCheckedValue(radioName){
+	    var radios = document.getElementsByName(radioName); // Get radio group by-name
+	    for(var y=0; y<radios.length; y++)
+	      if(radios[y].checked) return radios[y].value; // return the checked value
+		}
+
+	function getScore(){
+		  for (var i=0; i<total; i++)
+		    if(getCheckedValue("q"+i)===answers[i]) correctAnswers += 1; // increment only
+		  return correctAnswers;
+		}
+  /*
   var cat1 = ($("input[@name=q1]:checked").val() != "a");
   var cat2 = ($("input[@name=q2]:checked").val() != "c");
   var cat3 = ($("input[@name=q3]:checked").val() != "d");
@@ -59,15 +79,22 @@ $('#start').click(function() {
   if (cat5 === true)
   	correctAnswers++;
 
-  else incorrect++;
+  else incorrect++; */
 
 //Display results when clicked
 $('#submit').click(function() {
+	$('#quiz').hide();
 	$('#results').toggle('slow', function() {
 	    // Animation complete.
 
 	    console.log(correctAnswers);
 	    console.log(incorrect);
+
+	    $('#correct').append(correctAnswers);
+	    $('#incorrect').append(incorrect);
+
+	    if (correctAnswers === 5)
+	    	$('#message').append("AMAZING! You're an Arsenal Legend!")
 
 	})
 })

@@ -68,6 +68,9 @@ $('#submit').click(function() {
 	    if (correctAnswers === 5)
 	    	$('#message').append("AMAZING! You're an Arsenal Legend!")
 
+	    if (correctAnswers === 0)
+	    	$('#message').append("  You must support Tottenham...")
+
 	})
 })
 

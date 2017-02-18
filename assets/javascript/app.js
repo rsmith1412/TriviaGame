@@ -1,85 +1,51 @@
+var count = 30;
+var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+var correctAnswers = 0;
+var incorrect = 5 - correctAnswers;
+var answers = ["a", "c", "d", "b", "a"]
+  total = answers.length;
+
+/*function timer() {
+		count = count-1;
+		if (count <= 0) {
+		    clearInterval(counter);
+		    return;
+		}
+}*/
 //When start button clicked, show questions, start and display timer
 $('#start').click(function() {
 	$('#quiz').toggle('slow', function() {
+		
     	// Animation complete.
 	});
-
+	$('#start').hide();
   //Start and display timer of 30 seconds
-  
-  window.onload = function () {
-  	var display = document.querySelector('#time'),
-  	timer = new CountDownTimer(30),
-  	timeObj = CountDownTimer.parse(30);
+  	
+  	function timer() {
+		count = count-1;
+		if (count <= 0) {
+		    clearInterval(counter);
+		    return;
+		}
+	}
 
-  	format(timeObj.minutes, timeObj.seconds);
-
-  	timer.onTick(format);
-
-  	document.querySelector('start').addEventListener('click', function () {
-  		timer.start();
-  	});
-
-  	function format(minutes, seconds) {
-  		minutes = minutes < 10 ? "0" + minutes : minutes;
-  		seconds = seconds < 10 ? "0" + seconds : seconds;
-  		display.textContent = minutes + ':' + seconds;
-  	}
-  };
-  
 });
 	
-  var correctAnswers = 0;
-  var incorrect = 5 - correctAnswers;
-  var answers = ["a", "c", "d", "b", "a"]
-  	total = answers.length;
-  var ans1 = "a";
-  var ans2 = "c";
-  var ans3 = "d";
-  var ans4 = "b";
-  var ans5 = "a";
 
-  	function getCheckedValue(radioName){
+  	function getCheckedValue(radioName) {
 	    var radios = document.getElementsByName(radioName); // Get radio group by-name
 	    for(var y=0; y<radios.length; y++)
-	      if(radios[y].checked) return radios[y].value; // return the checked value
+	      if(radios[y].checked) 
+	      	return radios[y].value; // return the checked value
 		}
 
-	function getScore(){
+	function getScore() {
 		  for (var i=0; i<total; i++)
-		    if(getCheckedValue("q"+i)===answers[i]) correctAnswers += 1; // increment only
-		  return correctAnswers;
+		    if(getCheckedValue("q"+i) === answers[i]) 
+		    	correctAnswers += 1; // increment only
+		  	return correctAnswers;
 		}
-  /*
-  var cat1 = ($("input[@name=q1]:checked").val() != "a");
-  var cat2 = ($("input[@name=q2]:checked").val() != "c");
-  var cat3 = ($("input[@name=q3]:checked").val() != "d");
-  var cat4 = ($("input[@name=q4]:checked").val() != "b");
-  var cat5 = ($("input[@name=q5]:checked").val() != "d");
 
-  if (cat1 === true)
-  	correctAnswers++;
-
-  else incorrect++;
-
-  if (cat2 === true)
-  	correctAnswers++;
-
-  else incorrect++;
-
-  if (cat3 === true)
-  	correctAnswers++;
-
-  else incorrect++;
-
-  if (cat4 === true)
-  	correctAnswers++;
-
-  else incorrect++;
-
-  if (cat5 === true)
-  	correctAnswers++;
-
-  else incorrect++; */
 
 //Display results when clicked
 $('#submit').click(function() {
